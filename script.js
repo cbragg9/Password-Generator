@@ -9,11 +9,17 @@ function generatePassword() {
     passLength = parseInt(prompt("How many characters in your password (min: 8, max: 128)"));
   }
 
-  // TO DO: add options, filter out false values
+  // Boolean variables that will filter out certain characters
   var lowercase = confirm("Do you want LOWER case letters in your password?");
-  // var uppercase = confirm("Do you want UPPER case letters in your password?");
-  // var numbers = confirm("Do you want NUMBERS in your password?");
-  // var special = confirm("Do you want SPECIAL CHARACTERS in your password?");
+  var uppercase = confirm("Do you want UPPER case letters in your password?");
+  var numbers = confirm("Do you want NUMBERS in your password?");
+  var special = confirm("Do you want SPECIAL CHARACTERS in your password?");
+
+  // Return error message if all values are false
+  if (lowercase === false && uppercase === false && numbers === false && special === false) {
+    final = "Cannot Create Password";
+    return final;
+  }
 
   // Define all unique possible characters in a variable
   var randomUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -54,27 +60,20 @@ function generatePassword() {
   for (var i = 0; i < passLength; i++) {
     var addCharacter = generateUnique();
 
-    // If user selected no lowercase, and addCharacter is lowercase, create new character 
-    while (lowercase === false && randomLower.indexOf(addCharacter) !== -1) {
+    // Create new character if generateUnique returns a value that was requested to be filtered out 
+    while (
+      (lowercase === false && randomLower.indexOf(addCharacter) !== -1) || 
+      (uppercase === false && randomUpper.indexOf(addCharacter) !== -1) ||
+      (numbers === false && randomNumber.indexOf(addCharacter) !== -1) ||
+      (special === false && randomSpecial.indexOf(addCharacter) !== -1)
+      ) {
       var addCharacter = generateUnique();
     }
 
     final = final + addCharacter;
   }
-
-  // Switch statement, or, if statement (if for loop generates a character that user doesn't want, then search for new character, i--)
-
-  // Different approach? Set password values
-  // var values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()";
-
-  //  Getting password values in a single Array
-  //  console.log("Upper: " + values.charAt(Math.floor(Math.random() * 26)));
-  //  console.log("Lower: " + values.charAt(Math.floor(Math.random() * 26) + 26));
-  //  console.log("Number: " + values.charAt(Math.floor(Math.random() * 10) + 52));
-  //  console.log("Special: " + values.charAt(Math.floor(Math.random() * 10) + 62));
   
   return final;
-
 }
 
 

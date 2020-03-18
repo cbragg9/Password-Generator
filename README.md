@@ -1,11 +1,14 @@
-Description of latest commit:
+Description of latest commit:  
+-Expanded while loop to include uppercase, numbers, and special characters  
+-Added If statement to return error message if all values are false, can't create a password
+
+Previous commit:  
 -Moved variables outside of function to increase scope  
 -Created Boolean variable for lowercase  
 -Added while loop in for loop that creates final password var to generate new character if it matches a lowercase  
 
 
-
-Previous commit:
+Previous commit:  
 -Added prompt to set password length  
 -Added while loop to repeat question if length or data type is unacceptable  
 -Added four functions to generate one type of characters (uppercase, lowercase, number, special)  
