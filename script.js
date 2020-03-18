@@ -9,27 +9,35 @@ function generatePassword() {
     passLength = parseInt(prompt("How many characters in your password (min: 8, max: 128)"));
   }
 
+  // TO DO: add options, filter out false values
+  var lowercase = confirm("Do you want LOWER case letters in your password?");
+  // var uppercase = confirm("Do you want UPPER case letters in your password?");
+  // var numbers = confirm("Do you want NUMBERS in your password?");
+  // var special = confirm("Do you want SPECIAL CHARACTERS in your password?");
+
+  // Define all unique possible characters in a variable
+  var randomUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var randomLower = "abcdefghijklmnopqrstuvwxyz";
+  var randomNumber = "1234567890";
+  var randomSpecial = "!@#$%^&*()";
+
   // Getting unique uppercase from a function 
   function generateUpper() {
-    var randomUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     return randomUpper.charAt(Math.floor(Math.random() * randomUpper.length));
   }
 
   // Getting unique lowercase from a function 
   function generateLower() {
-    var randomLower = "abcdefghijklmnopqrstuvwxyz";
     return randomLower.charAt(Math.floor(Math.random() * randomLower.length));
   }
 
   // Getting unique number from a function 
-  function generateNumber() {
-    var randomNumber = "1234567890";
+  function generateNumber() {  
     return randomNumber.charAt(Math.floor(Math.random() * randomNumber.length));
   }
 
   // Getting unique special character from a function 
-  function generateSpecial() {
-    var randomSpecial = "!@#$%^&*()";
+  function generateSpecial() {    
     return randomSpecial.charAt(Math.floor(Math.random() * randomSpecial.length));
   }
 
@@ -44,15 +52,17 @@ function generatePassword() {
 
   // Add one unique character to final variable up to the password length
   for (var i = 0; i < passLength; i++) {
-    final = final + generateUnique();
+    var addCharacter = generateUnique();
+
+    // If user selected no lowercase, and addCharacter is lowercase, create new character 
+    while (lowercase === false && randomLower.indexOf(addCharacter) !== -1) {
+      var addCharacter = generateUnique();
+    }
+
+    final = final + addCharacter;
   }
 
-  // TO DO: add options, filter out false values
-  // var lowercase = confirm("Do you want LOWER case letters in your password?");
-  // var uppercase = confirm("Do you want UPPER case letters in your password?");
-  // var numbers = confirm("Do you want NUMBERS in your password?");
-  // var special = confirm("Do you want SPECIAL CHARACTERS in your password?");
-
+  // Switch statement, or, if statement (if for loop generates a character that user doesn't want, then search for new character, i--)
 
   // Different approach? Set password values
   // var values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()";

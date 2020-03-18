@@ -1,9 +1,16 @@
 Description of latest commit:
--Added prompt to set password length
--Added while loop to repeat question if length or data type is unacceptable
--Added four functions to generate one type of characters (uppercase, lowercase, number, special)
--Added one function to generate a random character from one of the four functions
--Added final password var
+-Moved variables outside of function to increase scope  
+-Created Boolean variable for lowercase  
+-Added while loop in for loop that creates final password var to generate new character if it matches a lowercase  
+
+
+
+Previous commit:
+-Added prompt to set password length  
+-Added while loop to repeat question if length or data type is unacceptable  
+-Added four functions to generate one type of characters (uppercase, lowercase, number, special)  
+-Added one function to generate a random character from one of the four functions  
+-Added final password var  
 -Added for loop to add one unique character to final variable using function, up to password length
 
 
